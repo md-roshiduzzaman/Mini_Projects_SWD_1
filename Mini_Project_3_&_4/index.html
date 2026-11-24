@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover movies, explore details, and save your favourites.">
+  <title>CineScope | Movie Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="CineScope home"><span class="brand-mark">C</span><span>Cine<span class="brand-accent">Scope</span></span></a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#discover">Discover</a>
+      <button class="nav-link" id="favoritesNav" type="button">My Watchlist <span id="watchlistCount" class="count-badge">0</span></button>
+    </nav>
+    <div class="header-note"><span class="status-dot"></span> Your movie universe</div>
+  </header>
+
+  <main>
+    <section class="hero" id="discover">
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-line"></span> YOUR NEXT GREAT STORY STARTS HERE</p>
+        <h1>Find your next<br><span>favourite film.</span></h1>
+        <p class="hero-copy">Explore movies, discover hidden gems, and keep the stories you love close.</p>
+        <form id="searchForm" class="search-form">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search movies, e.g. Interstellar..." autocomplete="off" aria-label="Search movies">
+          <button type="submit">Search <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="search-hint">Try a title like <button class="suggestion" type="button" data-query="Inception">Inception</button>, <button class="suggestion" type="button" data-query="The Dark Knight">The Dark Knight</button> or <button class="suggestion" type="button" data-query="Dune">Dune</button>.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="poster poster-back"><div class="poster-shape"></div><span>THE<br>UNKNOWN</span></div>
+        <div class="poster poster-front"><div class="poster-sun"></div><div class="poster-mountain"></div><span>BEYOND<br>THE FRAME</span></div>
+        <div class="floating-tag"><span class="tag-star">✦</span> STORIES WORTH WATCHING</div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <div><p class="eyebrow dark-eyebrow">THE COLLECTION</p><h2 id="resultsTitle">Popular discoveries</h2></div>
+        <div class="result-tools">
+          <label class="sr-only" for="sortSelect">Sort movies</label>
+          <select id="sortSelect">
+            <option value="default">Sort: Relevance</option>
+            <option value="year">Year: Newest first</option>
+            <option value="title">Title: A to Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="statusMessage" class="status-message" role="status" aria-live="polite">
+        <span class="loader"></span><span>Loading movies...</span>
+      </div>
+      <div id="movieGrid" class="movie-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-icon">⌕</div><h3>No movies found</h3><p>Try another title or check your spelling.</p>
+      </div>
+    </section>
+
+    <section class="watchlist-section hidden" id="watchlistSection">
+      <div class="section-heading"><div><p class="eyebrow dark-eyebrow">SAVED FOR LATER</p><h2>My watchlist</h2></div><button id="backToDiscover" class="text-button" type="button">← Back to Discover</button></div>
+      <div id="watchlistGrid" class="movie-grid"></div>
+      <div id="watchlistEmpty" class="empty-state"><div class="empty-icon">♡</div><h3>Your watchlist is empty</h3><p>Save movies with the heart button and they will appear here.</p></div>
+    </section>
+  </main>
+
+  <div id="movieModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close="true"></div>
+    <article class="modal-card">
+      <button id="closeModal" class="modal-close" type="button" aria-label="Close movie details">×</button>
+      <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>Cine<span class="brand-accent">Scope</span></span></a><p>Built with HTML, CSS, JavaScript & the OMDb API.</p><span>MP3–MP4 · Software Development I</span></footer>
+</body>
+</html>
